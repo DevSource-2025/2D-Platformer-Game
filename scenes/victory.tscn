@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctloa1evorbv"]
+
+[ext_resource type="Texture2D" uid="uid://bjuq8d6uf5p8e" path="res://assets new/sprites/world_tileset.png" id="1_67wcp"]
+[ext_resource type="Script" path="res://Scripts/victory.gd" id="1_hw7rs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1f8u"]
+atlas = ExtResource("1_67wcp")
+region = Rect2(128, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hhlce"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1f8u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="victory" type="Area2D"]
+script = ExtResource("1_hw7rs")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, -8)
+sprite_frames = SubResource("SpriteFrames_hhlce")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
